@@ -24,7 +24,7 @@ def day_of_week(date: str) -> str:
     day, month, year = (int(x) for x in date.split('/'))
     days_list = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     offset_dictionary = {1:0, 2:3, 3:2, 4:5, 5:0, 6:3, 7:5, 8:1, 9:4, 10:6, 11:2, 12:4}
-    # Adjusting the year if the month is January or February based on tomohiko sakamoto algorithm
+    # Adjusting the year if the month is January or February based on Tomohiko Sakamoto algorithm
     if month < 3:
         year -= 1
     # Calculate the day of the week
@@ -61,7 +61,7 @@ def after(date: str) -> str:
     '''
     # Converting date string --> day, month, and year as integers
     day, mon, year = (int(x) for x in date.split('/'))
-    day += 1  # move to the next day
+    day += 1  # move to  next day
 
     leap_flag = leap_year(year)  # Verify if it's a leap year
 
