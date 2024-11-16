@@ -27,13 +27,13 @@ def day_of_week(date: str) -> str:
     # Adjusting the year if the month is January or February based on tomohiko sakamoto algorithm
     if month < 3:
         year -= 1
-    # Utilizing the alogrithm to calculate the day of the week
+    # Calculate the day of the week
     num = (year + year//4 - year//100 + year//400 + offset_dictionary[month] + day) % 7
     return days_list[num]
 
 def leap_year(year: int) -> bool:
     "return True if the year is a leap year"
-    # Verify if the year can be divided by 4 --> leap year logic
+    # Check if the year can be divided by 4 --> leap year logic
     if year % 4 == 0:
         if year % 100 == 0:
             if year % 400 == 0:
@@ -43,10 +43,10 @@ def leap_year(year: int) -> bool:
     return False
 
 def mon_max(month:int, year:int) -> int:
-    "returns the maximum day for a given month. Includes leap year check"
+    "Returns the maximum day for a given month. Includes leap year check"
     month_dictionary = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30,
                 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
-    # if the month is February and it's a leap year, it will return 29 days
+    # If it is February and it's a leap year, it will return 29 days
     if month == 2 and leap_year(year):
         return 29
     else:
@@ -85,12 +85,12 @@ def before(date: str) -> str:
     "Returns previous day's date as DD/MM/YYYY"
     # Converting date string --> day, month, and year as integers
     day, mon, year = (int(x) for x in date.split('/'))
-    day -= 1  # move to the previous day
+    day -= 1  # Move to the previous day
    
-    # Determine if the current year is a leap year
+    # Check if the current year is a leap year
     leap_flag = False
-    if year % 4 == 0: #year is divisble by 4 = leap year
-        if year % 100 != 0 or year % 400 == 0: #checking century leap year rule
+    if year % 4 == 0: # Year is divisble by 4 = leap year
+        if year % 100 != 0 or year % 400 == 0: # Checking century leap year rule
             leap_flag = True
     # Dictionary defining the maximum number of days in each month
     month_dictionary = {1:31,2:28,3: 31,4: 30,5:31,6:30,
@@ -105,9 +105,9 @@ def before(date: str) -> str:
         mon -= 1
         if mon < 1:  # If the month is less than January, revert back to December of the previous year
             year -= 1
-            mon = 12 #Sets month variable back to decemeber
+            mon = 12 # Sets month variable back to decemeber
         day = month_dictionary[mon]  #Gets the maximum days for the new month
-        # If it's February and a leap year, update the day
+        # If it is February and a leap year, update the day
         if mon == 2 and leap_flag:
             day = 29
      
@@ -124,11 +124,11 @@ def valid_date(date: str) -> bool:
     try:
        # Converting date string --> day, month, and year as integers
        day, mon, year = (int(x) for x in date.split('/'))
-       # Verification of the day, month, and year
+       # Checking of the day, month, and year
        if 1 <= mon <= 12 and 1 <= day <= mon_max(mon, year) and year > 0:
             return True
     except (ValueError, KeyError) :
-        pass # Will ignore errors caused by invalid input format
+        pass # Ignore errors caused by invalid input format
     return False
 
 def day_iter(start_date: str, num: int) -> str:
@@ -144,10 +144,10 @@ def day_iter(start_date: str, num: int) -> str:
 
 
 if __name__ == "__main__":
-   #Check length of arguments
+   # Check length of arguments
    if len(sys.argv) != 3:
        usage()
-    #Check first arg is a valid date
+    # Check first arg is a valid date
    start_date = sys.argv[1]
    # Check that second arg is a valid number (+/-)
    try:
